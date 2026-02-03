@@ -11,4 +11,14 @@ describe('Node class', () => {
     const node = new Node('zoro', 'santoryu')
     expect(node.next).toBeNull()
   })
+
+  test('should allow next to be assigned another node', () => {
+    const firstNode = new Node('merry', 'first')
+    const secondNode = new Node('sunny', 'second')
+    firstNode.next = secondNode
+
+    expect(firstNode.next).toBe(secondNode)
+    expect(firstNode.next.key).toBe('sunny')
+    expect(firstNode.next.value).toBe('second')
+  })
 })
