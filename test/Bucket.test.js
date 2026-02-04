@@ -41,4 +41,12 @@ describe('Bucket class - find method', () => {
 
     expect(result).toBe('guitar')
   })
+
+  test('find: returns null when key does not exist', () => {
+    const bucket = new Bucket()
+    const first = bucket.append('jinbe', 'yukata')
+    const result = bucket.find('luffy')
+
+    expect(result).toBeNull()
+  })
 })
