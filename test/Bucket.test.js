@@ -49,4 +49,15 @@ describe('Bucket class - find method', () => {
 
     expect(result).toBeNull()
   })
+
+  test('find: handles multiple nodes with the same value but different keys', () => {
+    const bucket = new Bucket()
+    const first = bucket.append('luffy', 'pirate')
+    const second = bucket.append('zoro', 'pirate')
+    const third = bucket.append('sanji', 'pirate')
+
+    expect(bucket.find('luffy')).toBe('pirate')
+    expect(bucket.find('zoro')).toBe('pirate')
+    expect(bucket.find('sanji')).toBe('pirate')
+  })
 })
