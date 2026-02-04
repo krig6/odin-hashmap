@@ -23,3 +23,13 @@ describe('Bucket class - append method', () => {
     })
   })
 })
+
+
+describe('Bucket class - find method', () => {
+  test('find: returns null if bucket is empty', () => {
+    const bucket = new Bucket()
+    const result = bucket.find('robin')
+
+    expect(result).toBeNull()
+  })
+})
