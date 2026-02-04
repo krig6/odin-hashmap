@@ -11,6 +11,9 @@ class Bucket {
     if (this.head === null) {
       this.head = newNode
       this.tail = this.head
+    } else {
+      this.tail.next = newNode
+      this.tail = newNode
     }
 
     return newNode
