@@ -32,4 +32,13 @@ describe('Bucket class - find method', () => {
 
     expect(result).toBeNull()
   })
+
+  test('find: returns the node by key', () => {
+    const bucket = new Bucket()
+    const first = bucket.append('franky', 'ship')
+    const second = bucket.append('brook', 'guitar')
+    const result = bucket.find('brook')
+
+    expect(result).toBe('guitar')
+  })
 })
