@@ -18,6 +18,10 @@ class Bucket {
 
     return newNode
   }
+
+  find(key) {
+    if (this.head === null) return null
+  }
 }
 
 export default Bucket
