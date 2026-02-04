@@ -21,6 +21,15 @@ class Bucket {
 
   find(key) {
     if (this.head === null) return null
+
+    let currentNode = this.head
+
+    while (currentNode !== null) {
+      if (currentNode.key === key) return currentNode.value
+      currentNode = currentNode.next
+    }
+
+    return null
   }
 }
 
