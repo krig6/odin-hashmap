@@ -78,4 +78,17 @@ describe('Bucket class - remove method', () => {
     expect(result).toBe('cigarette')
     expect(bucket.find('sanji')).toBeNull()
   })
+
+  test('remove: handles removal when bucket has multiple nodes', () => {
+    const bucket = new Bucket()
+    const firstNode = bucket.append('zoro', 'santoryu')
+    const secondNode = bucket.append('chopper', 'pill')
+    const thirdNode = bucket.append('franky', 'cola')
+    const result = bucket.remove('chopper')
+
+    expect(bucket.find('zoro')).toBe('santoryu')
+    expect(bucket.find('chopper')).toBeNull()
+    expect(bucket.find('franky')).toBe('cola')
+    expect(result).toBe('pill')
+  })
 })
