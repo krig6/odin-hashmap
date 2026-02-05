@@ -31,6 +31,10 @@ class Bucket {
 
     return null
   }
+
+  remove(key) {
+    if (this.head === null) return null
+  }
 }
 
 export default Bucket
