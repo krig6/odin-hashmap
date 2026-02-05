@@ -91,4 +91,15 @@ describe('Bucket class - remove method', () => {
     expect(bucket.find('franky')).toBe('cola')
     expect(result).toBe('pill')
   })
+
+  test('remove: removes tail node in multi-node bucket', () => {
+    const bucket = new Bucket()
+    const firstNode = bucket.append('luffy', 'strawhat')
+    const secondNode = bucket.append('zoro', 'santoryu')
+    const thirdNode = bucket.append('nami', 'compass')
+    const result = bucket.remove('nami')
+
+    expect(result).toBe('compass')
+    expect(bucket.tail.key).toBe('zoro')
+  })
 })
