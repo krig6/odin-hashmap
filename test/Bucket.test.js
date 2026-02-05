@@ -102,4 +102,11 @@ describe('Bucket class - remove method', () => {
     expect(result).toBe('compass')
     expect(bucket.tail.key).toBe('zoro')
   })
+
+  test('remove: returns null for non-existent key', () => {
+    const bucket = new Bucket()
+    const result = bucket.remove('merry')
+
+    expect(result).toBeNull()
+  })
 })
