@@ -69,4 +69,13 @@ describe('Bucket class - remove method', () => {
 
     expect(result).toBeNull()
   })
+
+  test('remove: handles removal when bucket has only one node', () => {
+    const bucket = new Bucket()
+    const node = bucket.append('sanji', 'cigarette')
+    const result = bucket.remove('sanji')
+
+    expect(result).toBe('cigarette')
+    expect(bucket.find('sanji')).toBeNull()
+  })
 })
