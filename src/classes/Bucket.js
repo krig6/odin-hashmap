@@ -34,6 +34,16 @@ class Bucket {
 
   remove(key) {
     if (this.head === null) return null
+
+    let currentNode = this.head
+
+    if (currentNode.key === key) {
+      this.head = null
+      this.tail = null
+      return currentNode.value
+    }
+
+    return null
   }
 }
 
