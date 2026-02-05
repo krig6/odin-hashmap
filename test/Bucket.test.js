@@ -61,3 +61,12 @@ describe('Bucket class - find method', () => {
     expect(bucket.find('sanji')).toBe('pirate')
   })
 })
+
+describe('Bucket class - remove method', () => {
+  test('remove: returns null if bucket is empty', () => {
+    const bucket = new Bucket()
+    const result = bucket.remove('nami')
+
+    expect(result).toBeNull()
+  })
+})
