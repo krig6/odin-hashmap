@@ -35,28 +35,32 @@ class Bucket {
   remove(key) {
     if (this.head === null) return null
 
-    if (this.head.key === key && this.head === this.tail) {
-      const val = this.head.value
-      this.head = null
-      this.tail = null
-      return val
-    }
-
     let currentNode = this.head
     let previousNode = null
 
     while (currentNode !== null) {
       if (currentNode.key === key) {
-        previousNode.next = currentNode.next
+        if (currentNode === this.head) {
+          this.head = currentNode.next
+          if (currentNode === this.tail) {
+            this.tail = null
+          }
+        } else {
+          previousNode.next = currentNode.next
+
+          if (currentNode === this.tail) {
+            this.tail = previousNode
+          }
+
+        }
         return currentNode.value
       }
-
       previousNode = currentNode
       currentNode = currentNode.next
     }
-
     return null
   }
+
 }
 
 export default Bucket
