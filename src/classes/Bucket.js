@@ -77,6 +77,10 @@ class Bucket {
     return null
   }
 
+  has(key) {
+    if (this.head === null) return false
+  }
+
 }
 
 export default Bucket
