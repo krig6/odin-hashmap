@@ -64,6 +64,16 @@ class Bucket {
   update(key, value) {
     if (this.head === null) return null
 
+    let currentNode = this.head
+
+    while (currentNode !== null) {
+      if (currentNode.key === key) {
+        currentNode.value = value
+        return currentNode
+      }
+      currentNode = currentNode.next
+    }
+
     return null
   }
 
