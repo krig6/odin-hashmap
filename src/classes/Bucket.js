@@ -63,6 +63,8 @@ class Bucket {
 
   update(key, value) {
     if (this.head === null) return null
+
+    return null
   }
 
 }
