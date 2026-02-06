@@ -90,6 +90,10 @@ class Bucket {
     return false
   }
 
+  keys() {
+    if (this.head === null) return []
+  }
+
 }
 
 export default Bucket
