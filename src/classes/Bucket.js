@@ -79,6 +79,8 @@ class Bucket {
 
   has(key) {
     if (this.head === null) return false
+
+    return false
   }
 
 }
