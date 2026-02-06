@@ -151,6 +151,14 @@ describe('Bucket class - has method', () => {
 
     expect(bucket.has('doflamingo')).toBe(false)
   })
+
+  test('has: returns true if node exists in a multi-node bucket', () => {
+    const bucket = new Bucket()
+    bucket.append('fruit', 'powers')
+    bucket.append('vegetable', 'health')
+
+    expect(bucket.has('vegetable')).toBe(true)
+  })
 })
 
 
