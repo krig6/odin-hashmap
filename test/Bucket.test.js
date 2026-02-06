@@ -167,6 +167,20 @@ describe('Bucket class - keys method', () => {
 
     expect(bucket.keys()).toEqual([])
   })
+
+  test('keys: returns an array containing all keys in the bucket', () => {
+    const bucket = new Bucket()
+    bucket.append('luffy', 'strawhat')
+    bucket.append('zoro', 'santoryu')
+    bucket.append('brook', 'violin')
+    bucket.append('nami', 'compass')
+    bucket.append('usopp', 'slingshot')
+    bucket.append('vegetable', 'health')
+
+    expect(bucket.keys()).toEqual(
+      expect.arrayContaining(['luffy', 'zoro', 'brook', 'nami', 'usopp', 'vegetable'])
+    )
+  })
 })
 
 
