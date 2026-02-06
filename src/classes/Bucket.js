@@ -80,6 +80,13 @@ class Bucket {
   has(key) {
     if (this.head === null) return false
 
+    let currentNode = this.head
+
+    while (currentNode) {
+      if (currentNode.key === key) return true
+      currentNode = currentNode.next
+    }
+
     return false
   }
 
