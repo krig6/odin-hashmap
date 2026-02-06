@@ -61,6 +61,10 @@ class Bucket {
     return null
   }
 
+  update(key, value) {
+    if (this.head === null) return null
+  }
+
 }
 
 export default Bucket
