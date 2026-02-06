@@ -137,6 +137,14 @@ describe('Bucket class - update method', () => {
   })
 })
 
+describe('Bucket class - has method', () => {
+  test('has: returns false when bucket is empty', () => {
+    const bucket = new Bucket()
+
+    expect(bucket.has('roger')).toBe(false)
+  })
+})
+
 
 
 
