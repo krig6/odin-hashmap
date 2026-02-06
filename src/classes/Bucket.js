@@ -92,6 +92,16 @@ class Bucket {
 
   keys() {
     if (this.head === null) return []
+
+    const keysArray = []
+    let currentNode = this.head
+
+    while (currentNode) {
+      keysArray.push(currentNode.key)
+      currentNode = currentNode.next
+    }
+
+    return keysArray
   }
 
 }
