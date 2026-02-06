@@ -110,3 +110,24 @@ describe('Bucket class - remove method', () => {
     expect(result).toBeNull()
   })
 })
+
+describe('Bucket class - update method', () => {
+  test('update: returns null for empty bucket', () => {
+    const bucket = new Bucket()
+
+    expect(bucket.update('sunny', 'ship')).toBeNull()
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
