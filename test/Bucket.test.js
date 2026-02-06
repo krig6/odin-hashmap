@@ -126,6 +126,15 @@ describe('Bucket class - update method', () => {
     expect(bucket.update('sengoku', 'buddha')).toBeNull()
   })
 
+  test('update: returns the node when key exists and value is updated', () => {
+    const bucket = new Bucket()
+    bucket.append('land', 'giants')
+    bucket.append('sea', 'fishmen')
+    const result = bucket.update('sea', 'pirates')
+
+    expect(result.key).toBe('sea')
+    expect(result.value).toBe('pirates')
+  })
 })
 
 
