@@ -117,6 +117,15 @@ describe('Bucket class - update method', () => {
 
     expect(bucket.update('sunny', 'ship')).toBeNull()
   })
+
+  test('update: returns null when key does not exist in a multi-node bucket', () => {
+    const bucket = new Bucket()
+    bucket.append('garp', 'marine')
+    bucket.append('whitebeard', 'earthquake')
+
+    expect(bucket.update('sengoku', 'buddha')).toBeNull()
+  })
+
 })
 
 
