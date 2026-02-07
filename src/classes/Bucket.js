@@ -106,6 +106,16 @@ class Bucket {
 
   values() {
     if (this.head === null) return []
+
+    const valuesArray = []
+    let currentNode = this.head
+
+    while (currentNode) {
+      valuesArray.push(currentNode.value)
+      currentNode = currentNode.next
+    }
+
+    return valuesArray
   }
 
 }
