@@ -212,7 +212,29 @@ describe('Bucket class - entries method', () => {
     expect(bucket.entries()).toEqual([])
   })
 
+  test('entries: returns an array containing all [key, value] pairs in the bucket', () => {
+    const bucket = new Bucket()
+    bucket.append('luffy', 'strawhat')
+    bucket.append('zoro', 'santoryu')
+    bucket.append('brook', 'violin')
+    bucket.append('nami', 'compass')
+    bucket.append('usopp', 'slingshot')
+    bucket.append('vegetable', 'health')
+
+    expect(bucket.entries()).toEqual(
+      expect.arrayContaining([
+        ['luffy', 'strawhat'],
+        ['zoro', 'santoryu'],
+        ['brook', 'violin'],
+        ['nami', 'compass'],
+        ['usopp', 'slingshot'],
+        ['vegetable', 'health']
+      ])
+    )
+  })
 })
+
+
 
 
 
