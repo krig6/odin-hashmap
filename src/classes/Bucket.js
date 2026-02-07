@@ -104,6 +104,10 @@ class Bucket {
     return keysArray
   }
 
+  values() {
+    if (this.head === null) return []
+  }
+
 }
 
 export default Bucket
