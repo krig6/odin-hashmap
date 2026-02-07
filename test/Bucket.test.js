@@ -247,4 +247,12 @@ describe('Bucket class - length method', () => {
 
     expect(bucket.length()).toBe(1)
   })
+
+  test('length: handles decrement of length when a node is removed from the bucket', () => {
+    const bucket = new Bucket()
+    const node = bucket.append('morty', 'student')
+
+    expect(bucket.remove('morty')).toBe('student')
+    expect(bucket.length()).toBe(0)
+  })
 })
