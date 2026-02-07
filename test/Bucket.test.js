@@ -190,7 +190,23 @@ describe('Bucket class - values method', () => {
     expect(bucket.values()).toEqual([])
   })
 
+  test('values: returns an array containing all values in the bucket', () => {
+    const bucket = new Bucket()
+    bucket.append('luffy', 'strawhat')
+    bucket.append('zoro', 'santoryu')
+    bucket.append('brook', 'violin')
+    bucket.append('nami', 'compass')
+    bucket.append('usopp', 'slingshot')
+    bucket.append('vegetable', 'health')
+
+    expect(bucket.values()).toEqual(
+      expect.arrayContaining(['strawhat', 'santoryu', 'violin', 'compass', 'slingshot', 'health'])
+    )
+  })
 })
+
+
+
 
 
 
