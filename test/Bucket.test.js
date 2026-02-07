@@ -276,4 +276,17 @@ describe('Bucket class - clear method', () => {
     expect(bucket.tail).toBeNull();
     expect(bucket.length()).toBe(0);
   });
+
+  test('clear: on non-empty bucket removes all nodes', () => {
+    const bucket = new Bucket()
+    bucket.append('luffy', 'strawhat');
+    bucket.append('zoro', 'santoryu');
+    bucket.append('nami', 'compass');
+
+    bucket.clear();
+
+    expect(bucket.head).toBeNull();
+    expect(bucket.tail).toBeNull();
+    expect(bucket.length()).toBe(0);
+  });
 })
