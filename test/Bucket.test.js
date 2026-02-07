@@ -1,292 +1,243 @@
 import Bucket from "../src/classes/Bucket";
 
-describe('Bucket class - append method', () => {
+describe('Bucket class', () => {
+  let bucket;
+
+  beforeEach(() => {
+    bucket = new Bucket();
+  });
+
   describe('append method', () => {
-    test('append: should add first node to empty bucket', () => {
-      const bucket = new Bucket()
-      const node = bucket.append('nami', 'compass')
+    test('adds first node to empty bucket', () => {
+      const node = bucket.append('nami', 'compass');
 
-      expect(bucket.head).toBe(node)
-      expect(bucket.tail).toBe(node)
-      expect(node.next).toBeNull
-    })
+      expect(bucket.head).toBe(node);
+      expect(bucket.tail).toBe(node);
+      expect(node.next).toBeNull();
+    });
 
-    test('append: should add second node as the next node', () => {
-      const bucket = new Bucket()
-      const firstNode = bucket.append('usopp', 'slingshot')
-      const secondNode = bucket.append('sanji', 'cigarette')
+    test('adds subsequent nodes correctly', () => {
+      const first = bucket.append('usopp', 'slingshot');
+      const second = bucket.append('sanji', 'cigarette');
 
-      expect(bucket.head).toBe(firstNode)
-      expect(bucket.tail).toBe(secondNode)
-      expect(firstNode.next).toBe(secondNode)
-      expect(secondNode.next).toBeNull()
-    })
-  })
-})
-
-
-describe('Bucket class - find method', () => {
-  test('find: returns null if bucket is empty', () => {
-    const bucket = new Bucket()
-    const result = bucket.find('robin')
-
-    expect(result).toBeNull()
-  })
-
-  test('find: returns the node by key', () => {
-    const bucket = new Bucket()
-    const first = bucket.append('franky', 'ship')
-    const second = bucket.append('brook', 'guitar')
-    const result = bucket.find('brook')
-
-    expect(result).toBe('guitar')
-  })
-
-  test('find: returns null when key does not exist', () => {
-    const bucket = new Bucket()
-    const first = bucket.append('jinbe', 'yukata')
-    const result = bucket.find('luffy')
-
-    expect(result).toBeNull()
-  })
-
-  test('find: handles multiple nodes with the same value but different keys', () => {
-    const bucket = new Bucket()
-    const first = bucket.append('luffy', 'pirate')
-    const second = bucket.append('zoro', 'pirate')
-    const third = bucket.append('sanji', 'pirate')
-
-    expect(bucket.find('luffy')).toBe('pirate')
-    expect(bucket.find('zoro')).toBe('pirate')
-    expect(bucket.find('sanji')).toBe('pirate')
-  })
-})
-
-describe('Bucket class - remove method', () => {
-  test('remove: returns null if bucket is empty', () => {
-    const bucket = new Bucket()
-    const result = bucket.remove('nami')
-
-    expect(result).toBeNull()
-  })
-
-  test('remove: handles removal when bucket has only one node', () => {
-    const bucket = new Bucket()
-    const node = bucket.append('sanji', 'cigarette')
-    const result = bucket.remove('sanji')
-
-    expect(result).toBe('cigarette')
-    expect(bucket.find('sanji')).toBeNull()
-  })
-
-  test('remove: handles removal when bucket has multiple nodes', () => {
-    const bucket = new Bucket()
-    const firstNode = bucket.append('zoro', 'santoryu')
-    const secondNode = bucket.append('chopper', 'pill')
-    const thirdNode = bucket.append('franky', 'cola')
-    const result = bucket.remove('chopper')
-
-    expect(bucket.find('zoro')).toBe('santoryu')
-    expect(bucket.find('chopper')).toBeNull()
-    expect(bucket.find('franky')).toBe('cola')
-    expect(result).toBe('pill')
-  })
-
-  test('remove: removes tail node in multi-node bucket', () => {
-    const bucket = new Bucket()
-    const firstNode = bucket.append('luffy', 'strawhat')
-    const secondNode = bucket.append('zoro', 'santoryu')
-    const thirdNode = bucket.append('nami', 'compass')
-    const result = bucket.remove('nami')
-
-    expect(result).toBe('compass')
-    expect(bucket.tail.key).toBe('zoro')
-  })
-
-  test('remove: returns null for non-existent key', () => {
-    const bucket = new Bucket()
-    const result = bucket.remove('merry')
-
-    expect(result).toBeNull()
-  })
-})
-
-describe('Bucket class - update method', () => {
-  test('update: returns null for empty bucket', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.update('sunny', 'ship')).toBeNull()
-  })
-
-  test('update: returns null when key does not exist in a multi-node bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('garp', 'marine')
-    bucket.append('whitebeard', 'earthquake')
-
-    expect(bucket.update('sengoku', 'buddha')).toBeNull()
-  })
-
-  test('update: returns the node when key exists and value is updated', () => {
-    const bucket = new Bucket()
-    bucket.append('land', 'giants')
-    bucket.append('sea', 'fishmen')
-    const result = bucket.update('sea', 'pirates')
-
-    expect(result.key).toBe('sea')
-    expect(result.value).toBe('pirates')
-  })
-})
-
-describe('Bucket class - has method', () => {
-  test('has: returns false when bucket is empty', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.has('roger')).toBe(false)
-  })
-
-  test('has: returns false when key does not exist in a multi-node bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('dragon', 'father')
-    bucket.append('ace', 'brother')
-
-    expect(bucket.has('doflamingo')).toBe(false)
-  })
-
-  test('has: returns true if node exists in a multi-node bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('fruit', 'powers')
-    bucket.append('vegetable', 'health')
-
-    expect(bucket.has('vegetable')).toBe(true)
-  })
-})
-
-describe('Bucket class - keys method', () => {
-  test('keys: returns empty array when bucket is empty', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.keys()).toEqual([])
-  })
-
-  test('keys: returns an array containing all keys in the bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('luffy', 'strawhat')
-    bucket.append('zoro', 'santoryu')
-    bucket.append('brook', 'violin')
-    bucket.append('nami', 'compass')
-    bucket.append('usopp', 'slingshot')
-    bucket.append('vegetable', 'health')
-
-    expect(bucket.keys()).toEqual(
-      expect.arrayContaining(['luffy', 'zoro', 'brook', 'nami', 'usopp', 'vegetable'])
-    )
-  })
-})
-
-describe('Bucket class - values method', () => {
-  test('values: returns empty array when bucket is empty', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.values()).toEqual([])
-  })
-
-  test('values: returns an array containing all values in the bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('luffy', 'strawhat')
-    bucket.append('zoro', 'santoryu')
-    bucket.append('brook', 'violin')
-    bucket.append('nami', 'compass')
-    bucket.append('usopp', 'slingshot')
-    bucket.append('vegetable', 'health')
-
-    expect(bucket.values()).toEqual(
-      expect.arrayContaining(['strawhat', 'santoryu', 'violin', 'compass', 'slingshot', 'health'])
-    )
-  })
-})
-
-describe('Bucket class - entries method', () => {
-  test('entries: returns empty array when bucket is empty', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.entries()).toEqual([])
-  })
-
-  test('entries: returns an array containing all [key, value] pairs in the bucket', () => {
-    const bucket = new Bucket()
-    bucket.append('luffy', 'strawhat')
-    bucket.append('zoro', 'santoryu')
-    bucket.append('brook', 'violin')
-    bucket.append('nami', 'compass')
-    bucket.append('usopp', 'slingshot')
-    bucket.append('vegetable', 'health')
-
-    expect(bucket.entries()).toEqual(
-      expect.arrayContaining([
-        ['luffy', 'strawhat'],
-        ['zoro', 'santoryu'],
-        ['brook', 'violin'],
-        ['nami', 'compass'],
-        ['usopp', 'slingshot'],
-        ['vegetable', 'health']
-      ])
-    )
-  })
-})
-
-describe('Bucket class - length method', () => {
-  test('length: returns 0 when bucket is empty', () => {
-    const bucket = new Bucket()
-
-    expect(bucket.length()).toBe(0)
-  })
-
-  test('length: handles increment of length when a node is appended to the bucket', () => {
-    const bucket = new Bucket()
-    const node = bucket.append('rick', 'genius')
-
-    expect(bucket.length()).toBe(1)
-  })
-
-  test('length: handles decrement of length when a node is removed from the bucket', () => {
-    const bucket = new Bucket()
-    const node = bucket.append('morty', 'student')
-
-    expect(bucket.remove('morty')).toBe('student')
-    expect(bucket.length()).toBe(0)
-  })
-
-  test('length: removing a non-existent key does not affect the length of the bucket', () => {
-    const bucket = new Bucket()
-    const firstNode = bucket.append('rick', 'inventor')
-    const secondNode = bucket.append('morty', 'crybaby')
-
-    expect(bucket.remove('summer')).toBeNull()
-
-    expect(bucket.length()).toBe(2)
-  })
-})
-
-describe('Bucket class - clear method', () => {
-  test('clear: on empty bucket does nothing', () => {
-    const bucket = new Bucket()
-    bucket.clear();
-
-    expect(bucket.head).toBeNull();
-    expect(bucket.tail).toBeNull();
-    expect(bucket.length()).toBe(0);
+      expect(bucket.head).toBe(first);
+      expect(bucket.tail).toBe(second);
+      expect(first.next).toBe(second);
+      expect(second.next).toBeNull();
+    });
   });
 
-  test('clear: on non-empty bucket removes all nodes', () => {
-    const bucket = new Bucket()
-    bucket.append('luffy', 'strawhat');
-    bucket.append('zoro', 'santoryu');
-    bucket.append('nami', 'compass');
+  describe('find method', () => {
+    test('returns null if bucket is empty', () => {
+      expect(bucket.find('robin')).toBeNull();
+    });
 
-    bucket.clear();
+    test('returns value by key', () => {
+      bucket.append('franky', 'ship');
+      bucket.append('brook', 'guitar');
 
-    expect(bucket.head).toBeNull();
-    expect(bucket.tail).toBeNull();
-    expect(bucket.length()).toBe(0);
+      expect(bucket.find('brook')).toBe('guitar');
+    });
+
+    test('returns null when key does not exist', () => {
+      bucket.append('jinbe', 'yukata');
+      expect(bucket.find('luffy')).toBeNull();
+    });
+
+    test('handles multiple nodes with same value but different keys', () => {
+      bucket.append('luffy', 'pirate');
+      bucket.append('zoro', 'pirate');
+      bucket.append('sanji', 'pirate');
+
+      expect(bucket.find('luffy')).toBe('pirate');
+      expect(bucket.find('zoro')).toBe('pirate');
+      expect(bucket.find('sanji')).toBe('pirate');
+    });
   });
-})
+
+  describe('remove method', () => {
+    test('returns null if bucket is empty', () => {
+      expect(bucket.remove('nami')).toBeNull();
+    });
+
+    test('removes single node bucket', () => {
+      bucket.append('sanji', 'cigarette');
+      expect(bucket.remove('sanji')).toBe('cigarette');
+      expect(bucket.find('sanji')).toBeNull();
+    });
+
+    test('removes node in multi-node bucket', () => {
+      bucket.append('zoro', 'santoryu');
+      bucket.append('chopper', 'pill');
+      bucket.append('franky', 'cola');
+
+      expect(bucket.remove('chopper')).toBe('pill');
+      expect(bucket.find('zoro')).toBe('santoryu');
+      expect(bucket.find('chopper')).toBeNull();
+      expect(bucket.find('franky')).toBe('cola');
+    });
+
+    test('removes tail node correctly', () => {
+      bucket.append('luffy', 'strawhat');
+      bucket.append('zoro', 'santoryu');
+      bucket.append('nami', 'compass');
+
+      expect(bucket.remove('nami')).toBe('compass');
+      expect(bucket.tail.key).toBe('zoro');
+    });
+
+    test('non-existent key does not affect bucket', () => {
+      bucket.append('rick', 'inventor');
+      bucket.append('morty', 'crybaby');
+
+      expect(bucket.remove('summer')).toBeNull();
+    });
+  });
+
+  describe('update method', () => {
+    test('returns null for empty bucket', () => {
+      expect(bucket.update('sunny', 'ship')).toBeNull();
+    });
+
+    test('returns null when key does not exist', () => {
+      bucket.append('garp', 'marine');
+      bucket.append('whitebeard', 'earthquake');
+
+      expect(bucket.update('sengoku', 'buddha')).toBeNull();
+    });
+
+    test('updates value for existing key', () => {
+      bucket.append('land', 'giants');
+      bucket.append('sea', 'fishmen');
+
+      const updated = bucket.update('sea', 'pirates');
+      expect(updated.key).toBe('sea');
+      expect(updated.value).toBe('pirates');
+    });
+  });
+
+  describe('has method', () => {
+    test('returns false when bucket is empty', () => {
+      expect(bucket.has('roger')).toBe(false);
+    });
+
+    test('returns false if key does not exist', () => {
+      bucket.append('dragon', 'father');
+      bucket.append('ace', 'brother');
+      expect(bucket.has('doflamingo')).toBe(false);
+    });
+
+    test('returns true if key exists', () => {
+      bucket.append('fruit', 'powers');
+      bucket.append('vegetable', 'health');
+      expect(bucket.has('vegetable')).toBe(true);
+    });
+  });
+
+  describe('keys method', () => {
+    test('returns empty array for empty bucket', () => {
+      expect(bucket.keys()).toEqual([]);
+    });
+
+    test('returns all keys in bucket', () => {
+      bucket.append('luffy', 'strawhat');
+      bucket.append('zoro', 'santoryu');
+      bucket.append('brook', 'violin');
+      bucket.append('nami', 'compass');
+      bucket.append('usopp', 'slingshot');
+      bucket.append('vegetable', 'health');
+
+      expect(bucket.keys()).toEqual(
+        expect.arrayContaining(['luffy', 'zoro', 'brook', 'nami', 'usopp', 'vegetable'])
+      );
+    });
+  });
+
+  describe('values method', () => {
+    test('returns empty array for empty bucket', () => {
+      expect(bucket.values()).toEqual([]);
+    });
+
+    test('returns all values in bucket', () => {
+      bucket.append('luffy', 'strawhat');
+      bucket.append('zoro', 'santoryu');
+      bucket.append('brook', 'violin');
+      bucket.append('nami', 'compass');
+      bucket.append('usopp', 'slingshot');
+      bucket.append('vegetable', 'health');
+
+      expect(bucket.values()).toEqual(
+        expect.arrayContaining(['strawhat', 'santoryu', 'violin', 'compass', 'slingshot', 'health'])
+      );
+    });
+  });
+
+  describe('entries method', () => {
+    test('returns empty array for empty bucket', () => {
+      expect(bucket.entries()).toEqual([]);
+    });
+
+    test('returns all [key, value] pairs', () => {
+      bucket.append('luffy', 'strawhat');
+      bucket.append('zoro', 'santoryu');
+      bucket.append('brook', 'violin');
+      bucket.append('nami', 'compass');
+      bucket.append('usopp', 'slingshot');
+      bucket.append('vegetable', 'health');
+
+      expect(bucket.entries()).toEqual(
+        expect.arrayContaining([
+          ['luffy', 'strawhat'],
+          ['zoro', 'santoryu'],
+          ['brook', 'violin'],
+          ['nami', 'compass'],
+          ['usopp', 'slingshot'],
+          ['vegetable', 'health']
+        ])
+      );
+    });
+  });
+
+  describe('length method', () => {
+    test('returns 0 for empty bucket', () => {
+      expect(bucket.length()).toBe(0);
+    });
+
+    test('increments when node is appended', () => {
+      bucket.append('rick', 'genius');
+      expect(bucket.length()).toBe(1);
+    });
+
+    test('decrements when node is removed', () => {
+      bucket.append('morty', 'student');
+      bucket.remove('morty');
+      expect(bucket.length()).toBe(0);
+    });
+
+    test('does not change for non-existent key removal', () => {
+      bucket.append('rick', 'inventor');
+      bucket.append('morty', 'crybaby');
+      bucket.remove('summer');
+      expect(bucket.length()).toBe(2);
+    });
+  });
+
+  describe('clear method', () => {
+    test('does nothing if bucket is empty', () => {
+      bucket.clear();
+      expect(bucket.head).toBeNull();
+      expect(bucket.tail).toBeNull();
+      expect(bucket.length()).toBe(0);
+    });
+
+    test('removes all nodes if bucket is non-empty', () => {
+      bucket.append('luffy', 'strawhat');
+      bucket.append('zoro', 'santoryu');
+      bucket.append('nami', 'compass');
+      bucket.clear();
+      expect(bucket.head).toBeNull();
+      expect(bucket.tail).toBeNull();
+      expect(bucket.length()).toBe(0);
+    });
+  });
+});
