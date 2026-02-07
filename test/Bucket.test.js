@@ -266,3 +266,14 @@ describe('Bucket class - length method', () => {
     expect(bucket.length()).toBe(2)
   })
 })
+
+describe('Bucket class - clear method', () => {
+  test('clear: on empty bucket does nothing', () => {
+    const bucket = new Bucket()
+    bucket.clear();
+
+    expect(bucket.head).toBeNull();
+    expect(bucket.tail).toBeNull();
+    expect(bucket.length()).toBe(0);
+  });
+})
