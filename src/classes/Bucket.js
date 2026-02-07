@@ -55,6 +55,7 @@ class Bucket {
           }
 
         }
+        this.size--
         return currentNode.value
       }
       previousNode = currentNode
