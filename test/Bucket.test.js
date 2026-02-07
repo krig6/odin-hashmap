@@ -255,4 +255,14 @@ describe('Bucket class - length method', () => {
     expect(bucket.remove('morty')).toBe('student')
     expect(bucket.length()).toBe(0)
   })
+
+  test('length: removing a non-existent key does not affect the length of the bucket', () => {
+    const bucket = new Bucket()
+    const firstNode = bucket.append('rick', 'inventor')
+    const secondNode = bucket.append('morty', 'crybaby')
+
+    expect(bucket.remove('summer')).toBeNull()
+
+    expect(bucket.length()).toBe(2)
+  })
 })
