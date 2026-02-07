@@ -118,6 +118,10 @@ class Bucket {
     return valuesArray
   }
 
+  entries() {
+    if (this.head === null) return []
+  }
+
 }
 
 export default Bucket
