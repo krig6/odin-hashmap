@@ -139,6 +139,10 @@ class Bucket {
     return this.size
   }
 
+  clear() {
+    if (this.head === null) return
+  }
+
 }
 
 export default Bucket
