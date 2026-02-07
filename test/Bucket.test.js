@@ -183,8 +183,14 @@ describe('Bucket class - keys method', () => {
   })
 })
 
+describe('Bucket class - values method', () => {
+  test('values: returns empty array when bucket is empty', () => {
+    const bucket = new Bucket()
 
+    expect(bucket.values()).toEqual([])
+  })
 
+})
 
 
 
