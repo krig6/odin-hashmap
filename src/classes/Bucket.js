@@ -141,6 +141,10 @@ class Bucket {
 
   clear() {
     if (this.head === null) return
+
+    this.head = null
+    this.tail = null
+    this.size = 0
   }
 
 }
