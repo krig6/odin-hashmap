@@ -17,6 +17,7 @@ class Bucket {
       this.tail = newNode
     }
 
+    this.size++
     return newNode
   }
 
