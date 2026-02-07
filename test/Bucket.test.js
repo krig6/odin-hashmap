@@ -234,14 +234,10 @@ describe('Bucket class - entries method', () => {
   })
 })
 
+describe('Bucket class - length method', () => {
+  test('length: returns 0 when bucket is empty', () => {
+    const bucket = new Bucket()
 
-
-
-
-
-
-
-
-
-
-
+    expect(bucket.length()).toBe(0)
+  })
+})
