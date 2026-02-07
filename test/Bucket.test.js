@@ -240,4 +240,11 @@ describe('Bucket class - length method', () => {
 
     expect(bucket.length()).toBe(0)
   })
+
+  test('length: handles increment of length when a node is appended to the bucket', () => {
+    const bucket = new Bucket()
+    const node = bucket.append('rick', 'genius')
+
+    expect(bucket.length()).toBe(1)
+  })
 })
