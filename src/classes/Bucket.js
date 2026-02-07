@@ -26,7 +26,7 @@ class Bucket {
 
     let currentNode = this.head
 
-    while (currentNode !== null) {
+    while (currentNode) {
       if (currentNode.key === key) return currentNode.value
       currentNode = currentNode.next
     }
@@ -40,7 +40,7 @@ class Bucket {
     let currentNode = this.head
     let previousNode = null
 
-    while (currentNode !== null) {
+    while (currentNode) {
       if (currentNode.key === key) {
         if (currentNode === this.head) {
           this.head = currentNode.next
@@ -69,7 +69,7 @@ class Bucket {
 
     let currentNode = this.head
 
-    while (currentNode !== null) {
+    while (currentNode) {
       if (currentNode.key === key) {
         currentNode.value = value
         return currentNode
@@ -124,15 +124,15 @@ class Bucket {
   entries() {
     if (this.head === null) return []
 
-    const keyValueArr = []
+    const entriesArray = []
     let currentNode = this.head
 
     while (currentNode) {
-      keyValueArr.push([currentNode.key, currentNode.value])
+      entriesArray.push([currentNode.key, currentNode.value])
       currentNode = currentNode.next
     }
 
-    return keyValueArr
+    return entriesArray
   }
 
   length() {
