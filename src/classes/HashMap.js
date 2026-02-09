@@ -1,7 +1,10 @@
+import Bucket from '../classes/Bucket.js'
+
 class HashMap {
   constructor(loadFactor = 0.75, capacity = 16) {
     this.loadFactor = loadFactor
     this.capacity = capacity
+    this.buckets = new Array(this.capacity)
   }
 
   hash(key) {
@@ -17,6 +20,12 @@ class HashMap {
   }
 
   set(key, value) {
+    const index = this.hash(key) % this.capacity
+
+    if (!this.buckets[index]) this.buckets[index] = new Bucket()
+
+    this.buckets[index].append(key, value)
+
     return value
   }
 }
