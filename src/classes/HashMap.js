@@ -28,6 +28,10 @@ class HashMap {
 
     return value
   }
+
+  get(key) {
+    return null
+  }
 }
 
 export default HashMap
