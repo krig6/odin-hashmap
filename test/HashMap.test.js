@@ -32,5 +32,14 @@ describe('HashMap class', () => {
     test('should return different hash for different keys', () => {
       expect(hashmap.hash('beastmaster')).not.toBe(hashmap.hash('warlock'));
     });
+
+    test('should handle very long keys without breaking', () => {
+      const longKey = 'a'.repeat(1000);
+      const hash1 = hashmap.hash(longKey);
+      const hash2 = hashmap.hash(longKey);
+
+      expect(typeof hash1).toBe('number');
+      expect(hash1).toBe(hash2);
+    });
   })
 })
