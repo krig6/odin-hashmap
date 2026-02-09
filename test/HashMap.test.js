@@ -108,6 +108,16 @@ describe('HashMap class', () => {
       hashmap.remove('timbersaw')
       expect(hashmap.length()).toBe(1)
     })
+
+    test('should not decrement size if key does not exist in existing bucket', () => {
+
+      hashmap.set('a', 'value1')
+      hashmap.set('p', 'value2')
+
+      hashmap.remove('nonExistent')
+
+      expect(hashmap.length()).toBe(2)
+    })
   })
 
 })
