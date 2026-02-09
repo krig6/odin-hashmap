@@ -24,5 +24,9 @@ describe('HashMap class', () => {
       const result = hashmap.hash('rubick')
       expect(typeof result).toBe('number')
     })
+
+    test('should return same hash for the same key', () => {
+      expect(hashmap.hash('tidehunter')).toBe(hashmap.hash('tidehunter'))
+    })
   })
 })
