@@ -94,5 +94,12 @@ describe('HashMap class', () => {
     test('should return length of they keys in the hash map', () => {
       expect(hashmap.length()).toBe(0)
     })
+
+    test('should return correct length after adding keys', () => {
+      hashmap.set('bane', 'nightmare')
+      hashmap.set('mars', 'arena')
+      expect(hashmap.length()).toBe(2)
+    })
   })
+
 })
