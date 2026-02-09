@@ -46,6 +46,10 @@ class HashMap {
 
     return bucket.has(key)
   }
+
+  remove(key) {
+    return null
+  }
 }
 
 export default HashMap
