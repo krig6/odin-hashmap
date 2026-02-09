@@ -5,6 +5,7 @@ class HashMap {
     this.loadFactor = loadFactor
     this.capacity = capacity
     this.buckets = new Array(this.capacity)
+    this.size = 0
   }
 
   hash(key) {
@@ -25,6 +26,7 @@ class HashMap {
     if (!this.buckets[index]) this.buckets[index] = new Bucket()
 
     this.buckets[index].append(key, value)
+    this.size++
 
     return value
   }
@@ -57,7 +59,7 @@ class HashMap {
   }
 
   length() {
-    return 0
+    return this.size
   }
 }
 
