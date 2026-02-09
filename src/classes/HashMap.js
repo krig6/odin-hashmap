@@ -48,7 +48,12 @@ class HashMap {
   }
 
   remove(key) {
-    return null
+    const index = this.hash(key) % this.capacity
+    const bucket = this.buckets[index]
+
+    if (!bucket) return null
+
+    return bucket.remove(key)
   }
 }
 
