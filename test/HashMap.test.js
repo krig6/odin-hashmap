@@ -48,5 +48,11 @@ describe('HashMap class', () => {
       const res = hashmap.set('razor', 'lightning')
       expect(res).toBe('lightning')
     })
+
+    test('should overwrite existing value for same key', () => {
+      hashmap.set('axe', 'berserk')
+      const res = hashmap.set('axe', 'offlane')
+      expect(res).toBe('offlane')
+    })
   })
 })
