@@ -70,7 +70,11 @@ describe('HashMap class', () => {
   describe('has method', () => {
     test('should return false when bucket is empty ', () => {
       expect(hashmap.has('largo')).toBe(false)
+    })
 
+    test('should return true if key exists ', () => {
+      hashmap.set('snapfire', 'cookie')
+      expect(hashmap.has('snapfire')).toBe(true)
     })
   })
 })
