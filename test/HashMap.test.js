@@ -66,4 +66,11 @@ describe('HashMap class', () => {
       expect(hashmap.get('juggernaut')).toBe('blade fury')
     })
   })
+
+  describe('has method', () => {
+    test('should return false when bucket is empty ', () => {
+      expect(hashmap.has('largo')).toBe(false)
+
+    })
+  })
 })
