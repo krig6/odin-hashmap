@@ -55,6 +55,7 @@ class HashMap {
 
     if (!bucket) return null
 
+    this.size--
     return bucket.remove(key)
   }
 
