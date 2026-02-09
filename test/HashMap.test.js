@@ -100,6 +100,14 @@ describe('HashMap class', () => {
       hashmap.set('mars', 'arena')
       expect(hashmap.length()).toBe(2)
     })
+
+    test('should return correct length after removing keys', () => {
+      hashmap.set('bristleback', 'goo')
+      hashmap.set('timbersaw', 'chakram')
+
+      hashmap.remove('timbersaw')
+      expect(hashmap.length()).toBe(1)
+    })
   })
 
 })
