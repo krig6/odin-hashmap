@@ -82,5 +82,11 @@ describe('HashMap class', () => {
     test('should return null for empty hash map', () => {
       expect(hashmap.remove('invoker')).toBeNull()
     })
+
+    test('should return the value of an existing key and remove it', () => {
+      hashmap.set('lich', 'frost')
+      expect(hashmap.remove('lich')).toBe('frost')
+      expect(hashmap.has('lich')).toBe(false)
+    })
   })
 })
