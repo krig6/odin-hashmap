@@ -55,8 +55,12 @@ class HashMap {
 
     if (!bucket) return null
 
-    this.size--
-    return bucket.remove(key)
+    const removedValue = bucket.remove(key)
+    if (removedValue !== null) {
+      this.size--
+    }
+
+    return removedValue
   }
 
   length() {
