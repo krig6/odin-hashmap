@@ -12,4 +12,10 @@ describe('HashMap class', () => {
       expect(hashmap.loadFactor).toBe(0.75)
     })
   })
+
+  describe('hashmap capacity', () => {
+    test('should have a default capacity', () => {
+      expect(hashmap.capacity).toBe(16)
+    })
+  })
 })
