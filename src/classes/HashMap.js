@@ -15,6 +15,10 @@ class HashMap {
 
     return hashCode;
   }
+
+  set(key, value) {
+    return value
+  }
 }
 
 export default HashMap
