@@ -77,4 +77,10 @@ describe('HashMap class', () => {
       expect(hashmap.has('snapfire')).toBe(true)
     })
   })
+
+  describe('remove method', () => {
+    test('should return null for empty hash map', () => {
+      expect(hashmap.remove('invoker')).toBeNull()
+    })
+  })
 })
