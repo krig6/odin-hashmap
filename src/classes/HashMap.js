@@ -3,6 +3,10 @@ class HashMap {
     this.loadFactor = loadFactor
     this.capacity = capacity
   }
+
+  hash(key) {
+    return 0
+  }
 }
 
 export default HashMap
