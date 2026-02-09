@@ -30,7 +30,12 @@ class HashMap {
   }
 
   get(key) {
-    return null
+    const index = this.hash(key) % this.capacity
+    const bucket = this.buckets[index]
+
+    if (!bucket) return null
+
+    return bucket.find(key)
   }
 }
 
