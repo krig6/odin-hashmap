@@ -6,10 +6,11 @@ class HashMap {
 
   hash(key) {
     let hashCode = 0;
-    const primeNumber = 31;
+    const prime = 31;
+    const MOD = 2 ** 32;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode = primeNumber * hashCode + key.charCodeAt(i);
+      hashCode = (prime * hashCode + key.charCodeAt(i)) % MOD;
     }
 
     return hashCode;
