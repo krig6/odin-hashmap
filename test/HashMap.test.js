@@ -18,4 +18,11 @@ describe('HashMap class', () => {
       expect(hashmap.capacity).toBe(16)
     })
   })
+
+  describe('hash method', () => {
+    test('should return a number for a string key', () => {
+      const result = hashmap.hash('rubick')
+      expect(typeof result).toBe('number')
+    })
+  })
 })
