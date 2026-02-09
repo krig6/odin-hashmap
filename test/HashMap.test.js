@@ -28,5 +28,9 @@ describe('HashMap class', () => {
     test('should return same hash for the same key', () => {
       expect(hashmap.hash('tidehunter')).toBe(hashmap.hash('tidehunter'))
     })
+
+    test('should return different hash for different keys', () => {
+      expect(hashmap.hash('beastmaster')).not.toBe(hashmap.hash('warlock'));
+    });
   })
 })
