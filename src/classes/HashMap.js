@@ -43,6 +43,8 @@ class HashMap {
     const bucket = this.buckets[index]
 
     if (!bucket) return false
+
+    return bucket.has(key)
   }
 }
 
