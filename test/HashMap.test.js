@@ -42,4 +42,11 @@ describe('HashMap class', () => {
       expect(hash1).toBe(hash2);
     });
   })
+
+  describe('set method', () => {
+    test('should add key-value pairs correctly', () => {
+      const res = hashmap.set('razor', 'lightning')
+      expect(res).toBe('lightning')
+    })
+  })
 })
