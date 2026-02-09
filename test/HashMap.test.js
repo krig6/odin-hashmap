@@ -55,4 +55,10 @@ describe('HashMap class', () => {
       expect(res).toBe('offlane')
     })
   })
+
+  describe('get method', () => {
+    test('should return null for a non-existent key', () => {
+      expect(hashmap.get('viper')).toBeNull()
+    })
+  })
 })
