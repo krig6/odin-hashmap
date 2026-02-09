@@ -89,4 +89,10 @@ describe('HashMap class', () => {
       expect(hashmap.has('lich')).toBe(false)
     })
   })
+
+  describe('length method', () => {
+    test('should return length of they keys in the hash map', () => {
+      expect(hashmap.length()).toBe(0)
+    })
+  })
 })
