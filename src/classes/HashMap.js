@@ -37,6 +37,13 @@ class HashMap {
 
     return bucket.find(key)
   }
+
+  has(key) {
+    const index = this.hash(key) % this.capacity
+    const bucket = this.buckets[index]
+
+    if (!bucket) return false
+  }
 }
 
 export default HashMap
