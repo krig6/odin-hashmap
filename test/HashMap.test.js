@@ -60,5 +60,10 @@ describe('HashMap class', () => {
     test('should return null for a non-existent key', () => {
       expect(hashmap.get('viper')).toBeNull()
     })
+
+    test('should return value for an existing key', () => {
+      hashmap.set('juggernaut', 'blade fury')
+      expect(hashmap.get('juggernaut')).toBe('blade fury')
+    })
   })
 })
