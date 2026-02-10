@@ -70,6 +70,10 @@ class HashMap {
   length() {
     return this.size
   }
+
+  clear() {
+    this.size = 0
+  }
 }
 
 export default HashMap
