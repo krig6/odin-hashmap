@@ -54,6 +54,13 @@ describe('HashMap class', () => {
       const res = hashmap.set('axe', 'offlane')
       expect(res).toBe('offlane')
     })
+
+    test('should not change length when overwriting an existing key', () => {
+      hashmap.set('jakiro', 'icefire')
+
+      hashmap.set('jakiro', 'dragon')
+      expect(hashmap.length()).toBe(1)
+    })
   })
 
   describe('get method', () => {
