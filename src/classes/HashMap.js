@@ -25,8 +25,12 @@ class HashMap {
 
     if (!this.buckets[index]) this.buckets[index] = new Bucket()
 
-    this.buckets[index].append(key, value)
-    this.size++
+    if (this.buckets[index].has(key)) {
+      this.buckets[index].update(key, value)
+    } else {
+      this.buckets[index].append(key, value)
+      this.size++
+    }
 
     return value
   }
