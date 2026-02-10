@@ -165,6 +165,19 @@ describe('HashMap class', () => {
     test('returns empty array for empty bucket', () => {
       expect(hashmap.keys()).toEqual([])
     })
+
+    test('returns all keys in hashmap', () => {
+      hashmap.set('juggernaut', 'blade fury');
+      hashmap.set('crystal_maiden', 'frostbite');
+      hashmap.set('axe', 'berserk');
+      hashmap.set('pudge', 'meat hook');
+      hashmap.set('storm_spirit', 'ball lightning');
+      hashmap.set('phantom_assassin', 'stifling dagger');
+
+      expect(hashmap.keys()).toEqual(
+        expect.arrayContaining(['juggernaut', 'crystal_maiden', 'axe', 'pudge', 'storm_spirit', 'phantom_assassin'])
+      );
+    });
   })
 
 })
