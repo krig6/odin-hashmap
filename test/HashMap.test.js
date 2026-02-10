@@ -137,6 +137,16 @@ describe('HashMap class', () => {
       hashmap.clear()
       expect(hashmap.length()).toBe(0)
     })
+
+    test('should remove all existing keys', () => {
+      hashmap.set('chen', 'creeps')
+      hashmap.set('abaddon', 'shield')
+
+      hashmap.clear()
+
+      expect(hashmap.get('chen')).toBeNull()
+      expect(hashmap.get('abaddon')).toBeNull()
+    })
   })
 
 })
