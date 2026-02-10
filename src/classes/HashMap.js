@@ -89,6 +89,10 @@ class HashMap {
 
     return keysArray
   }
+
+  values() {
+    return []
+  }
 }
 
 export default HashMap
