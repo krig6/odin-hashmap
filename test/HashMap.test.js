@@ -57,7 +57,6 @@ describe('HashMap class', () => {
 
     test('should not change length when overwriting an existing key', () => {
       hashmap.set('jakiro', 'icefire')
-
       hashmap.set('jakiro', 'dragon')
       expect(hashmap.length()).toBe(1)
     })
@@ -75,18 +74,18 @@ describe('HashMap class', () => {
   })
 
   describe('has method', () => {
-    test('should return false when bucket is empty ', () => {
+    test('should return false when hashmap is empty', () => {
       expect(hashmap.has('largo')).toBe(false)
     })
 
-    test('should return true if key exists ', () => {
+    test('should return true if key exists', () => {
       hashmap.set('snapfire', 'cookie')
       expect(hashmap.has('snapfire')).toBe(true)
     })
   })
 
   describe('remove method', () => {
-    test('should return null for empty hash map', () => {
+    test('should return null for empty hashmap', () => {
       expect(hashmap.remove('invoker')).toBeNull()
     })
 
@@ -98,7 +97,7 @@ describe('HashMap class', () => {
   })
 
   describe('length method', () => {
-    test('should return length of they keys in the hash map', () => {
+    test('should return 0 for empty hashmap', () => {
       expect(hashmap.length()).toBe(0)
     })
 
@@ -111,29 +110,23 @@ describe('HashMap class', () => {
     test('should return correct length after removing keys', () => {
       hashmap.set('bristleback', 'goo')
       hashmap.set('timbersaw', 'chakram')
-
       hashmap.remove('timbersaw')
       expect(hashmap.length()).toBe(1)
     })
 
-    test('should not decrement size if key does not exist in existing bucket', () => {
-
+    test('should not decrement length when removing non-existent keys', () => {
       hashmap.set('a', 'value1')
       hashmap.set('p', 'value2')
-
       hashmap.remove('nonExistent')
-
       expect(hashmap.length()).toBe(2)
     })
   })
 
   describe('clear method', () => {
-    test('should reset the hash map length to 0', () => {
+    test('should reset the hashmap length to 0', () => {
       hashmap.set('weaver', 'bug')
       hashmap.set('nyx', 'carapace')
-
       expect(hashmap.length()).toBe(2)
-
       hashmap.clear()
       expect(hashmap.length()).toBe(0)
     })
@@ -141,9 +134,7 @@ describe('HashMap class', () => {
     test('should remove all existing keys', () => {
       hashmap.set('chen', 'creeps')
       hashmap.set('abaddon', 'shield')
-
       hashmap.clear()
-
       expect(hashmap.get('chen')).toBeNull()
       expect(hashmap.get('abaddon')).toBeNull()
     })
@@ -151,18 +142,15 @@ describe('HashMap class', () => {
     test('should allow new keys to be set after clearing', () => {
       hashmap.set('alchemist', 'coins')
       hashmap.set('visage', 'familiars')
-
       hashmap.clear()
-
       hashmap.set('clinkz', 'bones')
-
       expect(hashmap.length()).toBe(1)
       expect(hashmap.get('clinkz')).toBe('bones')
     })
   })
 
   describe('keys method', () => {
-    test('returns empty array for empty bucket', () => {
+    test('returns empty array for empty hashmap', () => {
       expect(hashmap.keys()).toEqual([])
     })
 
@@ -181,11 +169,11 @@ describe('HashMap class', () => {
   })
 
   describe('values method', () => {
-    test('returns empty array for empty bucket', () => {
+    test('returns empty array for empty hashmap', () => {
       expect(hashmap.values()).toEqual([]);
     });
 
-    test('returns all values in bucket', () => {
+    test('returns all values in hashmap', () => {
       hashmap.set('juggernaut', 'blade fury');
       hashmap.set('crystal_maiden', 'frostbite');
       hashmap.set('axe', 'berserk');
@@ -228,25 +216,20 @@ describe('HashMap class', () => {
   describe('resize method', () => {
     test('doubles capacity when load factor exceeded', () => {
       const smallMap = new HashMap(0.75, 4);
-
       smallMap.set('juggernaut', 'blade fury');
       smallMap.set('crystal_maiden', 'frostbite');
       smallMap.set('axe', 'berserk');
-
       expect(smallMap.capacity).toBe(4);
-
       smallMap.set('pudge', 'meat hook');
       expect(smallMap.capacity).toBe(8);
     })
 
     test('preserves all entries after resizing', () => {
       const smallMap = new HashMap(0.75, 4);
-
       smallMap.set('juggernaut', 'blade fury');
       smallMap.set('crystal_maiden', 'frostbite');
       smallMap.set('axe', 'berserk');
       smallMap.set('pudge', 'meat hook');
-
       expect(smallMap.get('juggernaut')).toBe('blade fury');
       expect(smallMap.get('crystal_maiden')).toBe('frostbite');
       expect(smallMap.get('axe')).toBe('berserk');
@@ -255,19 +238,15 @@ describe('HashMap class', () => {
 
     test('allows adding new keys after resizing', () => {
       const smallMap = new HashMap(0.75, 4);
-
       smallMap.set('juggernaut', 'blade fury');
       smallMap.set('crystal_maiden', 'frostbite');
       smallMap.set('axe', 'berserk');
       smallMap.set('pudge', 'meat hook');
-
       smallMap.set('storm_spirit', 'ball lightning');
       smallMap.set('phantom_assassin', 'stifling dagger');
-
       expect(smallMap.length()).toBe(6);
       expect(smallMap.get('storm_spirit')).toBe('ball lightning');
       expect(smallMap.get('phantom_assassin')).toBe('stifling dagger');
     });
   })
-
 })
