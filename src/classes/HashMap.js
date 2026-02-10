@@ -72,6 +72,7 @@ class HashMap {
   }
 
   clear() {
+    this.buckets = new Array(this.capacity)
     this.size = 0
   }
 }
