@@ -1,9 +1,9 @@
 import Bucket from '../classes/Bucket.js'
 
 class HashMap {
-  constructor(loadFactor = 0.75, capacity = 16) {
+  constructor(loadFactor = 0.75, initialCapacity = 16) {
     this.loadFactor = loadFactor
-    this.capacity = capacity
+    this.capacity = initialCapacity
     this.buckets = new Array(this.capacity)
     this.size = 0
   }
@@ -21,14 +21,14 @@ class HashMap {
   }
 
   set(key, value) {
-    const index = this.hash(key) % this.capacity
+    const bucketIndex = this.hash(key) % this.capacity
 
-    if (!this.buckets[index]) this.buckets[index] = new Bucket()
+    if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket()
 
-    if (this.buckets[index].has(key)) {
-      this.buckets[index].update(key, value)
+    if (this.buckets[bucketIndex].has(key)) {
+      this.buckets[bucketIndex].update(key, value)
     } else {
-      this.buckets[index].append(key, value)
+      this.buckets[bucketIndex].append(key, value)
       this.size++
     }
 
@@ -38,8 +38,8 @@ class HashMap {
   }
 
   get(key) {
-    const index = this.hash(key) % this.capacity
-    const bucket = this.buckets[index]
+    const bucketIndex = this.hash(key) % this.capacity
+    const bucket = this.buckets[bucketIndex]
 
     if (!bucket) return null
 
@@ -47,8 +47,8 @@ class HashMap {
   }
 
   has(key) {
-    const index = this.hash(key) % this.capacity
-    const bucket = this.buckets[index]
+    const bucketIndex = this.hash(key) % this.capacity
+    const bucket = this.buckets[bucketIndex]
 
     if (!bucket) return false
 
@@ -56,8 +56,8 @@ class HashMap {
   }
 
   remove(key) {
-    const index = this.hash(key) % this.capacity
-    const bucket = this.buckets[index]
+    const bucketIndex = this.hash(key) % this.capacity
+    const bucket = this.buckets[bucketIndex]
 
     if (!bucket) return null
 
@@ -128,9 +128,9 @@ class HashMap {
     for (const bucket of oldBuckets) {
       if (bucket) {
         for (const [key, value] of bucket.entries()) {
-          const index = this.hash(key) % this.capacity
-          if (!this.buckets[index]) this.buckets[index] = new Bucket()
-          this.buckets[index].append(key, value)
+          const bucketIndex = this.hash(key) % this.capacity
+          if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket()
+          this.buckets[bucketIndex].append(key, value)
         }
       }
     }
