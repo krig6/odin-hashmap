@@ -180,4 +180,9 @@ describe('HashMap class', () => {
     });
   })
 
+  describe('values method', () => {
+    test('returns empty array for empty bucket', () => {
+      expect(hashmap.values()).toEqual([]);
+    });
+  });
 })
