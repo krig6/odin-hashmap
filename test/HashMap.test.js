@@ -127,4 +127,16 @@ describe('HashMap class', () => {
     })
   })
 
+  describe('clear method', () => {
+    test('should reset the hash map length to 0', () => {
+      hashmap.set('weaver', 'bug')
+      hashmap.set('nyx', 'carapace')
+
+      expect(hashmap.length()).toBe(2)
+
+      hashmap.clear()
+      expect(hashmap.length()).toBe(0)
+    })
+  })
+
 })
