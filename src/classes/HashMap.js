@@ -104,6 +104,10 @@ class HashMap {
     return valuesArray
   }
 
+  entries() {
+    return []
+  }
+
 }
 
 export default HashMap
