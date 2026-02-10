@@ -147,6 +147,18 @@ describe('HashMap class', () => {
       expect(hashmap.get('chen')).toBeNull()
       expect(hashmap.get('abaddon')).toBeNull()
     })
+
+    test('should allow new keys to be set after clearing', () => {
+      hashmap.set('alchemist', 'coins')
+      hashmap.set('visage', 'familiars')
+
+      hashmap.clear()
+
+      hashmap.set('clinkz', 'bones')
+
+      expect(hashmap.length()).toBe(1)
+      expect(hashmap.get('clinkz')).toBe('bones')
+    })
   })
 
 })
