@@ -161,4 +161,10 @@ describe('HashMap class', () => {
     })
   })
 
+  describe('keys method', () => {
+    test('returns empty array for empty bucket', () => {
+      expect(hashmap.keys()).toEqual([])
+    })
+  })
+
 })
