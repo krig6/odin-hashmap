@@ -10,11 +10,10 @@ class HashMap {
 
   hash(key) {
     let hashCode = 0;
-    const prime = 31;
-    const MOD = 2 ** 32;
+    const PRIME_MULTIPLIER = 31;
 
     for (let i = 0; i < key.length; i++) {
-      hashCode = (prime * hashCode + key.charCodeAt(i)) % MOD;
+      hashCode = (PRIME_MULTIPLIER * hashCode + key.charCodeAt(i));
     }
 
     return hashCode;
