@@ -224,4 +224,20 @@ describe('HashMap class', () => {
       );
     });
   });
+
+  describe('resize method', () => {
+    test('doubles capacity when load factor exceeded', () => {
+      const smallMap = new HashMap(0.75, 4);
+
+      smallMap.set('juggernaut', 'blade fury');
+      smallMap.set('crystal_maiden', 'frostbite');
+      smallMap.set('axe', 'berserk');
+
+      expect(smallMap.capacity).toBe(4);
+
+      smallMap.set('pudge', 'meat hook');
+      expect(smallMap.capacity).toBe(8);
+    })
+  })
+
 })
