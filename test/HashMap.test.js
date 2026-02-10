@@ -252,6 +252,22 @@ describe('HashMap class', () => {
       expect(smallMap.get('axe')).toBe('berserk');
       expect(smallMap.get('pudge')).toBe('meat hook');
     });
+
+    test('allows adding new keys after resizing', () => {
+      const smallMap = new HashMap(0.75, 4);
+
+      smallMap.set('juggernaut', 'blade fury');
+      smallMap.set('crystal_maiden', 'frostbite');
+      smallMap.set('axe', 'berserk');
+      smallMap.set('pudge', 'meat hook');
+
+      smallMap.set('storm_spirit', 'ball lightning');
+      smallMap.set('phantom_assassin', 'stifling dagger');
+
+      expect(smallMap.length()).toBe(6);
+      expect(smallMap.get('storm_spirit')).toBe('ball lightning');
+      expect(smallMap.get('phantom_assassin')).toBe('stifling dagger');
+    });
   })
 
 })
