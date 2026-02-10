@@ -105,7 +105,17 @@ class HashMap {
   }
 
   entries() {
-    return []
+    if (!this.size) return []
+
+    const entriesArray = []
+
+    for (const bucket of this.buckets) {
+      if (bucket) {
+        entriesArray.push(...bucket.entries())
+      }
+    }
+
+    return entriesArray
   }
 
 }
