@@ -32,6 +32,8 @@ class HashMap {
       this.size++
     }
 
+    if (this.size / this.capacity > this.loadFactor) this._resize()
+
     return value
   }
 
@@ -116,6 +118,23 @@ class HashMap {
     }
 
     return entriesArray
+  }
+
+  _resize() {
+    const oldBuckets = this.buckets
+    this.capacity *= 2
+    this.buckets = new Array(this.capacity)
+
+    for (const bucket of oldBuckets) {
+      if (bucket) {
+        for (const [key, value] of bucket.entries()) {
+          const index = this.hash(key) % this.capacity
+          if (!this.buckets[index]) this.buckets[index] = new Bucket()
+          this.buckets[index].append(key, value)
+        }
+      }
+    }
+
   }
 
 }
