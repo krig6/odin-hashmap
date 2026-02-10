@@ -91,8 +91,19 @@ class HashMap {
   }
 
   values() {
-    return []
+    if (!this.size) return []
+
+    const valuesArray = []
+
+    for (const bucket of this.buckets) {
+      if (bucket) {
+        valuesArray.push(...bucket.values())
+      }
+    }
+
+    return valuesArray
   }
+
 }
 
 export default HashMap
