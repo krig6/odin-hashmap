@@ -198,4 +198,11 @@ describe('HashMap class', () => {
       );
     });
   });
+
+  describe('entries method', () => {
+    test('returns empty array for empty hashmap', () => {
+      expect(hashmap.entries()).toEqual([]);
+    });
+
+  });
 })
