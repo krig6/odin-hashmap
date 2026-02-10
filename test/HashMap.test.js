@@ -238,6 +238,20 @@ describe('HashMap class', () => {
       smallMap.set('pudge', 'meat hook');
       expect(smallMap.capacity).toBe(8);
     })
+
+    test('preserves all entries after resizing', () => {
+      const smallMap = new HashMap(0.75, 4);
+
+      smallMap.set('juggernaut', 'blade fury');
+      smallMap.set('crystal_maiden', 'frostbite');
+      smallMap.set('axe', 'berserk');
+      smallMap.set('pudge', 'meat hook');
+
+      expect(smallMap.get('juggernaut')).toBe('blade fury');
+      expect(smallMap.get('crystal_maiden')).toBe('frostbite');
+      expect(smallMap.get('axe')).toBe('berserk');
+      expect(smallMap.get('pudge')).toBe('meat hook');
+    });
   })
 
 })
