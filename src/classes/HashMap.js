@@ -1,11 +1,11 @@
-import Bucket from '../classes/Bucket.js'
+import Bucket from '../classes/Bucket.js';
 
 class HashMap {
   constructor(loadFactor = 0.75, initialCapacity = 16) {
-    this.loadFactor = loadFactor
-    this.capacity = initialCapacity
-    this.buckets = new Array(this.capacity)
-    this.size = 0
+    this.loadFactor = loadFactor;
+    this.capacity = initialCapacity;
+    this.buckets = new Array(this.capacity);
+    this.size = 0;
   }
 
   hash(key) {
@@ -20,116 +20,116 @@ class HashMap {
   }
 
   set(key, value) {
-    const bucketIndex = this.hash(key) % this.capacity
+    const bucketIndex = this.hash(key) % this.capacity;
 
-    if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket()
+    if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket();
 
     if (this.buckets[bucketIndex].has(key)) {
-      this.buckets[bucketIndex].update(key, value)
+      this.buckets[bucketIndex].update(key, value);
     } else {
-      this.buckets[bucketIndex].append(key, value)
-      this.size++
+      this.buckets[bucketIndex].append(key, value);
+      this.size++;
     }
 
-    if (this.size / this.capacity > this.loadFactor) this._resize()
+    if (this.size / this.capacity > this.loadFactor) this._resize();
 
-    return value
+    return value;
   }
 
   get(key) {
-    const bucketIndex = this.hash(key) % this.capacity
-    const bucket = this.buckets[bucketIndex]
+    const bucketIndex = this.hash(key) % this.capacity;
+    const bucket = this.buckets[bucketIndex];
 
-    if (!bucket) return null
+    if (!bucket) return null;
 
-    return bucket.find(key)
+    return bucket.find(key);
   }
 
   has(key) {
-    const bucketIndex = this.hash(key) % this.capacity
-    const bucket = this.buckets[bucketIndex]
+    const bucketIndex = this.hash(key) % this.capacity;
+    const bucket = this.buckets[bucketIndex];
 
-    if (!bucket) return false
+    if (!bucket) return false;
 
-    return bucket.has(key)
+    return bucket.has(key);
   }
 
   remove(key) {
-    const bucketIndex = this.hash(key) % this.capacity
-    const bucket = this.buckets[bucketIndex]
+    const bucketIndex = this.hash(key) % this.capacity;
+    const bucket = this.buckets[bucketIndex];
 
-    if (!bucket) return null
+    if (!bucket) return null;
 
-    const removedValue = bucket.remove(key)
+    const removedValue = bucket.remove(key);
     if (removedValue !== null) {
-      this.size--
+      this.size--;
     }
 
-    return removedValue
+    return removedValue;
   }
 
   length() {
-    return this.size
+    return this.size;
   }
 
   clear() {
-    this.buckets = new Array(this.capacity)
-    this.size = 0
+    this.buckets = new Array(this.capacity);
+    this.size = 0;
   }
 
   keys() {
-    if (!this.size) return []
+    if (!this.size) return [];
 
-    const keysArray = []
+    const keysArray = [];
 
     for (const bucket of this.buckets) {
       if (bucket) {
-        keysArray.push(...bucket.keys())
+        keysArray.push(...bucket.keys());
       }
     }
 
-    return keysArray
+    return keysArray;
   }
 
   values() {
-    if (!this.size) return []
+    if (!this.size) return [];
 
-    const valuesArray = []
+    const valuesArray = [];
 
     for (const bucket of this.buckets) {
       if (bucket) {
-        valuesArray.push(...bucket.values())
+        valuesArray.push(...bucket.values());
       }
     }
 
-    return valuesArray
+    return valuesArray;
   }
 
   entries() {
-    if (!this.size) return []
+    if (!this.size) return [];
 
-    const entriesArray = []
+    const entriesArray = [];
 
     for (const bucket of this.buckets) {
       if (bucket) {
-        entriesArray.push(...bucket.entries())
+        entriesArray.push(...bucket.entries());
       }
     }
 
-    return entriesArray
+    return entriesArray;
   }
 
   _resize() {
-    const oldBuckets = this.buckets
-    this.capacity *= 2
-    this.buckets = new Array(this.capacity)
+    const oldBuckets = this.buckets;
+    this.capacity *= 2;
+    this.buckets = new Array(this.capacity);
 
     for (const bucket of oldBuckets) {
       if (bucket) {
         for (const [key, value] of bucket.entries()) {
-          const bucketIndex = this.hash(key) % this.capacity
-          if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket()
-          this.buckets[bucketIndex].append(key, value)
+          const bucketIndex = this.hash(key) % this.capacity;
+          if (!this.buckets[bucketIndex]) this.buckets[bucketIndex] = new Bucket();
+          this.buckets[bucketIndex].append(key, value);
         }
       }
     }
@@ -138,4 +138,4 @@ class HashMap {
 
 }
 
-export default HashMap
+export default HashMap;
