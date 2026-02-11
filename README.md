@@ -1,103 +1,85 @@
-# Webpack Template
+# Project: HashMap
 
-Welcome to the Webpack Template! 🎉 This template provides a solid foundation for starting a modern JavaScript project with Webpack, including development and production setups.
+A hash map is a data structure that stores key-value pairs and allows fast access, insertion, and deletion by computing a hash code for each key to determine its storage location. Internally, values are organized in buckets, and the structure can dynamically resize to maintain performance as more entries are added.
 
 ## Features
 
-- **Development and Production Builds:** Separate configurations for development (webpack.dev.js) and production (webpack.prod.js).
-- **CSS and Asset Handling:** Pre-configured loaders for CSS and image files.
-- **HTML Generation:** Automatically generates an HTML file with dynamic script inclusion using HtmlWebpackPlugin.
-- **Hot Module Replacement:** Enables fast, live updates during development.
-- **Optimized Output:** Uses content hashing for cache busting in production builds.
-- **ESLint Configuration:** Code quality and consistency enforcement
+- **Key-Value Storage:** Stores entries as key-value pairs for fast lookup, insertion, and deletion.
+
+- **Bucket-based Storage:** Uses linked list buckets internally to organize entries.
+
+- **Collision Handling:** Resolves hash collisions by storing multiple entries in the same bucket using a linked list.
+
+- **Dynamic Resizing:** Automatically doubles capacity when the load factor is exceeded to maintain performance.
+
+- **Customizable and Extendable:** The project structure separates `Node`, `Bucket`, and `HashMap` classes, making it easy to add new methods or modify existing ones.
 
 ## Getting Started
 
-Follow these steps to create a new project using this template:
+Follow these steps to get started with the **HashMap** project:
 
-### 1. Use this Template
+### 1. Clone the Repository
 
-Click the "**Use this template**" button on the repository page to create a new repository based on this template.
-
-Alternatively, you can create a new repository and set this template as the upstream:
+Start by cloning the repository to your local machine:
 
 ```bash
-# HTTPS (recommended for beginners)
-git clone https://github.com/krig6/my-webpack-template.git
-
-# SSH (if you have SSH keys configured)
-git clone git@github.com:krig6/my-webpack-template.git
-
-cd my-webpack-template
-
-git remote remove origin
-
-git remote add origin git@github.com:<github-username>/<new-repository-name>.git
-
-git push -u origin main
+git clone git@github.com:krig6/odin-hashmap.git
+cd odin-hashmap
 ```
 
 ### 2. Install Dependencies
+
+To install the necessary dependencies, run:
 
 ```bash
 npm install
 ```
 
-### 3. Start the Development Server
-
-Launch the development server with hot reloading enabled:
+### 3. Run Demo
 
 ```bash
-npm run dev
+npm run start
 ```
 
-This will start the server at http://localhost:3000 by default.
+This will execute the demo in `src/index.js` to showcase `HashMap` functionality in the console.
 
-### 4. Build for Production
+## Methods
 
-Generate an optimized production build:
-
-```bash
-npm run build
-```
-
-This will generate the production-ready files in the dist directory.
-
-### 5. Deploy to GitHub Pages
-
-To deploy your project to GitHub Pages, use:
-
-```
-npm run deploy
-```
-
-This script will deploy the contents of the dist directory to the gh-pages branch of your repository, making it available at https://&lt;username&gt;.github.io/&lt;repository-name&gt;.
-
-Note: Replace &lt;username&gt; with your GitHub username and &lt;repository-name&gt; with the name of your repository.
+| Method | Description |
+|--------|-------------|
+| `set(key, value)` | Adds or updates a key-value pair. Automatically handles collisions and resizes if needed. |
+| `get(key)` | Returns the value for the given key, or `null` if not found. |
+| `has(key)` | Checks if the key exists; returns `true` or `false`. |
+| `remove(key)` | Removes the key-value pair and returns the removed value, or `null` if not found. |
+| `length()` | Returns the number of entries in the HashMap. |
+| `clear()` | Removes all entries and resets the size to zero. |
+| `keys()` | Returns an array of all keys. |
+| `values()` | Returns an array of all values. |
+| `entries()` | Returns an array of `[key, value]` pairs. |
+| `_resize()` | Internal method. Doubles capacity and rehashes all entries (not for external use). |
 
 ## Project Structure
-
 ```
 .
-├── dist/             # Compiled output files
-├── src/              # Source files
-│   ├── assets/       # Images, fonts, and other assets
-│   ├── javascript/   # JavaScript modules and scripts
-│   ├── styles/       # CSS and styling files
-│   ├── index.js      # Main JavaScript entry point
-│   └── template.html # HTML template file
-├── eslint.config.js  # ESLint configuration for code linting
-├── .gitignore        # Specifies files to ignore in version control
-├── README.md         # Project documentation
-├── package.json      # Project metadata and dependencies
-├── webpack.common.js # Common Webpack configuration
-├── webpack.dev.js    # Webpack configuration for development
-└── webpack.prod.js   # Webpack configuration for production
+├── src/
+│   ├── classes/
+│   │   ├── Bucket.js      # Implements the Bucket class (linked list) for handling hash collisions
+│   │   ├── HashMap.js     # Implements the HashMap class with key-value storage, hashing, and dynamic resizing
+│   │   └── Node.js        # Implements the Node class used by Bucket to store key-value pairs
+│   └── index.js           # Demo script to test the HashMap class and demonstrate its functionality
+├── test/
+│   ├── Bucket.test.js     # Unit tests for the Bucket class
+│   ├── HashMap.test.js    # Unit tests for the HashMap class
+│   └── Node.test.js       # Unit tests for the Node class
+├── .gitignore             # Specifies files and directories to be ignored by Git
+├── README.md              # Project documentation
+├── eslint.config.js       # ESLint configuration for code linting
+└── package.json           # Project metadata and dependencies
 ```
 
 ## Customization
 
-Feel free to modify the configuration files and project structure to fit your specific needs. Whether you're adding new loaders, plugins, or custom scripts, this template is designed to be flexible and easy to extend.
+You can extend the HashMap implementation by adding new methods or modifying existing ones. The modular structure with separate `Node`, `Bucket`, and `HashMap` classes makes it easy to experiment and enhance functionality.
 
 ## Contributing
 
