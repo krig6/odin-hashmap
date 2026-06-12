@@ -83,13 +83,4 @@ You can extend the HashMap implementation by adding new methods or modifying exi
 
 ## Contributing
 
-Contributions, bug reports, and feature suggestions are welcome!
-
-To contribute:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-3. **Write tests for new functionality**
-4. **Ensure all tests pass**
-5. **Follow the existing code style**
-6. **Submit a pull request**
+This project serves as a learning exercise demonstrating hash table design, collision handling, and dynamic resizing in JavaScript.
